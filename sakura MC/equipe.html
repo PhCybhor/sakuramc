@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Equipe - Sakura MC</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1b1b2f;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .topo {
+      background: linear-gradient(90deg, #e04e8a, #ff91b3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 30px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .menu {
+      display: flex;
+      gap: 20px;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .menu a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .titulo {
+      text-align: center;
+      font-size: 36px;
+      color: #ffc8e2;
+      margin-bottom: 40px;
+    }
+
+    .cargo {
+      font-size: 24px;
+      color: #ff91b3;
+      margin: 30px 0 10px;
+      border-bottom: 2px solid #ff91b3;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 8px 0;
+      font-size: 18px;
+      color: #eee;
+    }
+
+    .usuario-logado {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 20px;
+    }
+
+    .usuario-logado img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .logout {
+      margin-left: 10px;
+      background: #e04e8a;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topo">
+    <div class="logo">Sakura MC</div>
+    <nav class="menu" id="menu">
+        <a href="index.html">Início</a>
+        <a href="loja.html">Loja</a>
+        <a href="forum.html">Fórum</a>
+        <a href="equipe.html">Equipe</a>
+        <a href="ajuda.html">Ajuda</a>
+      <a href="login.html" class="botao-login" id="botaoLogin">Login</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="titulo">Equipe Sakura MC</h1>
+
+    <div class="cargo">CEOs</div>
+    <ul>
+      <li>Austra</li>
+      <li>iBeen</li>
+      <li>H4xzz</li>
+      <li>ttnotblunt</li>
+    </ul>
+
+    <div class="cargo">Devs</div>
+    <ul>
+      <li>yJpz</li>
+      <li>Ph</li>
+    </ul>
+
+    <div class="cargo">Gerentes</div>
+    <ul>
+      <li>CupidoImoral</li>
+      <li>Ugomes</li>
+    </ul>
+
+    <div class="cargo">Moderadores</div>
+    <ul>
+      <li>zxsxwk</li>
+    </ul>
+  </main>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuario) {
+      window.location.href = "login.html";
+    } else {
+      const menu = document.getElementById("menu");
+      const loginBtn = document.getElementById("botaoLogin");
+      if (loginBtn) loginBtn.style.display = "none";
+
+      const divUsuario = document.createElement("div");
+      divUsuario.classList.add("usuario-logado");
+
+      divUsuario.innerHTML = `
+        <img src="${usuario.foto}" alt="Foto do usuário">
+        <span>Bem-vindo, ${usuario.nome}</span>
+        <button class="logout" onclick="logout()">Sair</button>
+      `;
+
+      menu.appendChild(divUsuario);
+    }
+
+    function logout() {
+      localStorage.removeItem("usuarioLogado");
+      window.location.reload();
+    }
+  </script>
+
+</body>
+</html>

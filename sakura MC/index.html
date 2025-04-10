@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sakura MC</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1b1b2f;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .topo {
+      background: linear-gradient(90deg, #e04e8a, #ff91b3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 30px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      animation: fadeInDown 1s ease;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      letter-spacing: 1px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .menu {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 6px 10px;
+      border-radius: 30px;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    .menu a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .botao-login {
+      background-color: #333;
+      color: #e04e8a;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s;
+    }
+
+    .botao-login:hover {
+      background-color: #ffdef0;
+      transform: translateY(-2px);
+    }
+
+    .usuario-logado {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .usuario-logado img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .logout {
+      background-color: #fff;
+      color: #e04e8a;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .logout:hover {
+      background-color: #ffc8e2;
+    }
+
+    .busca {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .busca input {
+      padding: 8px 12px 8px 32px;
+      border-radius: 20px;
+      border: none;
+      font-size: 14px;
+      outline: none;
+      background-color: #fff;
+      color: #333;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .busca input:focus {
+      box-shadow: 0 0 0 3px rgba(255, 192, 203, 0.5);
+    }
+
+    .busca::before {
+      content: "🔍";
+      position: absolute;
+      left: 10px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .banner img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.8);
+    }
+
+    .titulo-banner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 54px;
+      font-weight: bold;
+      color: #ffe3f5;
+      text-shadow: 2px 2px 12px #000;
+    }
+
+    .sobre {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 30px;
+      background-color: #1f1f2f;
+      gap: 40px;
+    }
+
+    .img-container img {
+      max-width: 500px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .texto-sobre {
+      max-width: 500px;
+      color: #fdfdfd;
+    }
+
+    @media (max-width: 768px) {
+      .sobre {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .menu {
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .busca {
+        width: 100%;
+        margin-top: 10px;
+        justify-content: center;
+      }
+
+      .busca input {
+        width: 90%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPO -->
+  <header class="topo">
+    <div class="logo">Sakura MC</div>
+    <nav class="menu" id="menu">
+      <a href="index.html">Início</a>
+      <a href="loja.html">Loja</a>
+      <a href="forum.html">Fórum</a>
+      <a href="equipe.html">Equipe</a>
+      <a href="ajuda.html">Ajuda</a>
+      <a href="login.html" class="botao-login" id="botaoLogin">Login</a>
+    </nav>
+  </header>
+
+  <!-- BANNER -->
+  <section class="banner">
+    <img src="baguga3.png" alt="Banner do servidor" />
+  </section>
+
+  <!-- SOBRE O SERVIDOR -->
+  <section class="sobre">
+    <div class="img-container">
+      <img src="image.png" alt="Lobby do Sakura MC" />
+    </div>
+    <div class="texto-sobre">
+      <h2>Bem-vindo ao Lobby do Sakura MC</h2>
+      <p>
+        Explore um mundo encantador de RankUP, inspirado na cultura oriental e na beleza das flores de cerejeira.
+      </p>
+    </div>
+  </section>
+
+  <section class="sobre" style="flex-direction: row-reverse;">
+    <div class="img-container">
+      <img src="amig.png" alt="Vista aérea do lobby do Sakura MC" />
+    </div>      
+    <div class="texto-sobre">
+      <h2>Vista Aérea do Sakura MC</h2>
+      <p>
+        Uma perspectiva única do nosso lobby revela a simetria e a grandiosidade da construção.
+      </p>
+    </div>
+  </section>
+
+  <section class="sobre">
+    <div class="img-container">
+      <img src="yt.png" alt="Lobby do Sakura MC" />
+    </div>
+    <div class="texto-sobre">
+      <h2>Espermograma: Simples e Essencial</h2>
+      <p>
+        O espermograma é um exame rápido e importante para avaliar a fertilidade masculina.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuario) {
+      window.location.href = "login.html";
+    } else {
+      const menu = document.getElementById("menu");
+      const loginBtn = document.getElementById("botaoLogin");
+      loginBtn.style.display = "none";
+
+      const divUsuario = document.createElement("div");
+      divUsuario.classList.add("usuario-logado");
+
+      divUsuario.innerHTML = `
+        <img src="${usuario.foto}" alt="Foto do usuário">
+        <span>Bem-vindo, ${usuario.nome}</span>
+        <button class="logout" onclick="logout()">Sair</button>
+      `;
+
+      menu.appendChild(divUsuario);
+    }
+
+    function logout() {
+      localStorage.removeItem("usuarioLogado");
+      location.reload();
+    }
+  </script>
+</body>
+</html>

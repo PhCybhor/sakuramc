@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loja - Sakura MC</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1b1b2f;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .topo {
+      background: linear-gradient(90deg, #e04e8a, #ff91b3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 30px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      letter-spacing: 1px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .menu a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .usuario-logado {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .usuario-logado img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .logout {
+      background-color: #fff;
+      color: #e04e8a;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .loja-container {
+      padding: 60px 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .loja-titulo {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #ffc8e2;
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background-color: #252538;
+      border-radius: 16px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 20px rgba(255, 120, 180, 0.3);
+    }
+
+    .card h3 {
+      color: #ffe3f5;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 15px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .preco {
+      font-size: 20px;
+      color: #ffc8e2;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .btn-comprar {
+      background-color: #e04e8a;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.3s ease;
+    }
+
+    .btn-comprar:hover {
+      background-color: #ff77aa;
+    }
+
+    @media (max-width: 768px) {
+      .loja-titulo {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topo">
+    <div class="logo">Sakura MC</div>
+    <nav class="menu" id="menu">
+      <a href="index.html">Início</a>
+      <a href="loja.html">Loja</a>
+      <a href="forum.html">Fórum</a>
+      <a href="equipe.html">Equipe</a>
+      <a href="ajuda.html">Ajuda</a>
+      <a href="login.html" id="botaoLogin">Login</a>
+    </nav>
+  </header>
+
+  <section class="loja-container">
+    <h1 class="loja-titulo">Loja Oficial - Sakura MC</h1>
+    <div class="produtos">
+
+      <div class="card">
+        <h3>Rank Sakura+</h3>
+        <p>Acesso exclusivo ao /fly, /kit diário e nome colorido.</p>
+        <div class="preco">R$ 29,90</div>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+
+      <div class="card">
+        <h3>Coins x10.000</h3>
+        <p>Compre coins para gastar na loja do servidor!</p>
+        <div class="preco">R$ 9,90</div>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+
+      <div class="card">
+        <h3>VIP Mensal</h3>
+        <p>Vantagens exclusivas por 30 dias.</p>
+        <div class="preco">R$ 19,90</div>
+        <button class="btn-comprar">Comprar</button>
+      </div>
+
+      <div class="card">
+        <h3>Tag Youtuber</h3>
+        <p>Destaque no chat e suporte extra para criadores!</p>
+        <div class="preco">R$ 0,00*</div>
+        <button class="btn-comprar">Solicitar</button>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuario) {
+      window.location.href = "login.html";
+    } else {
+      const menu = document.getElementById("menu");
+      const loginBtn = document.getElementById("botaoLogin");
+      loginBtn.style.display = "none";
+
+      const divUsuario = document.createElement("div");
+      divUsuario.classList.add("usuario-logado");
+
+      divUsuario.innerHTML = `
+        <img src="${usuario.foto}" alt="Foto do usuário">
+        <span>Bem-vindo, ${usuario.nome}</span>
+        <button class="logout" onclick="logout()">Sair</button>
+      `;
+
+      menu.appendChild(divUsuario);
+    }
+
+    function logout() {
+      localStorage.removeItem("usuarioLogado");
+      window.location.href = "login.html";
+    }
+  </script>
+
+</body>
+</html>

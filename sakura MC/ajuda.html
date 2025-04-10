@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajuda - Sakura MC</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1b1b2f;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .topo {
+      background: linear-gradient(90deg, #e04e8a, #ff91b3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 30px;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .menu {
+      display: flex;
+      gap: 20px;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .menu a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    .titulo {
+      font-size: 36px;
+      color: #ffc8e2;
+      margin-bottom: 30px;
+    }
+
+    .descricao {
+      font-size: 18px;
+      color: #ddd;
+      margin-bottom: 40px;
+    }
+
+    .redes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .rede {
+      background-color: #252538;
+      padding: 20px 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      width: 250px;
+    }
+
+    .rede:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 120, 180, 0.3);
+    }
+
+    .rede h3 {
+      color: #ff91b3;
+      margin-bottom: 10px;
+    }
+
+    .rede p {
+      color: #ccc;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .rede a {
+      color: #ffc8e2;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .usuario-logado {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 20px;
+    }
+
+    .usuario-logado img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .logout {
+      margin-left: 10px;
+      background: #e04e8a;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topo">
+    <div class="logo">Sakura MC</div>
+    <nav class="menu" id="menu">
+      <a href="index.html">Início</a>
+      <a href="loja.html">Loja</a>
+      <a href="forum.html">Fórum</a>
+      <a href="equipe.html">Equipe</a>
+      <a href="ajuda.html">Ajuda</a>
+      <a href="login.html" class="botao-login" id="botaoLogin">Login</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="titulo">Precisa de Ajuda?</h1>
+    <p class="descricao">Entre em contato com a equipe através das nossas redes sociais abaixo. Estamos aqui para ajudar!</p>
+
+    <div class="redes">
+      <div class="rede">
+        <h3>Discord</h3>
+        <p>Suporte rápido com a comunidade e staff</p>
+        <a href="https://discord.gg/wXcuAMtt" target="_blank">Entrar no Discord</a>
+      </div>
+      <div class="rede">
+        <h3>Instagram</h3>
+        <p>Acompanhe novidades e tire dúvidas por DM</p>
+        <a href="https://instagram.com/" target="_blank">Visitar instagram</a>
+      </div>
+      <div class="rede">
+        <h3>Email</h3>
+        <p>Nos envie um email com sua dúvida ou sugestão</p>
+        <a href="mailto:phelohim@gmail.com">Enviar email</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuario) {
+      window.location.href = "login.html";
+    } else {
+      const menu = document.getElementById("menu");
+      const loginBtn = document.getElementById("botaoLogin");
+      if (loginBtn) loginBtn.style.display = "none";
+
+      const divUsuario = document.createElement("div");
+      divUsuario.classList.add("usuario-logado");
+
+      divUsuario.innerHTML = `
+        <img src="${usuario.foto}" alt="Foto do usuário">
+        <span>Bem-vindo, ${usuario.nome}</span>
+        <button class="logout" onclick="logout()">Sair</button>
+      `;
+
+      menu.appendChild(divUsuario);
+    }
+
+    function logout() {
+      localStorage.removeItem("usuarioLogado");
+      window.location.reload();
+    }
+  </script>
+
+</body>
+</html>
